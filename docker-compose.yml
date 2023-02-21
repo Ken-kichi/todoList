@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./reactApp:/usr/src/app # ローカルをコンテナ内にマウント
+    command: sh -c "cd my-app && yarn start"
+    ports:
+      - "3000:3000"
+      - "9005:9005"
+    stdin_open: true
