@@ -1,46 +1,49 @@
-# Getting Started with Create React App
+## docker で React の開発環境 を作成する
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. ディレクトリを作成
+   mkdir reactApp
+2. docker-compose.yml と Dockerfile があることを確認し、ターミナルで　 docker-compose build 　を実行
+3. docker-compose run --rm react-app sh -c "npm install -g create-react-app && create-react-app my-app --template typescript
+4. $ docker-compose up -d で React 環境を起動
 
-## Available Scripts
+## Firebase で プロジェクトを作成
 
-In the project directory, you can run:
+1. firebase でプロジェクトを作成
+2. ターミナルで　 npm install firebase 　を実行する
+3. reactApp/my-app/src 　に firebase.tsx を作成し、初期化するコードを記載する
 
-### `npm start`
+## Firestore Database の Web 上でデータを挿入
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Cloud Firebase でデータベースを作成
+2. ロケーションを Tokyo にし、データベースを作成
+3. コレクション ID を「todolist」にしコレクションを作成
+4. ドキュメントを以下のように設定して保存
+   ドキュメント ID：自動 ID
+   フィールド：item タイプ：string 　値：買い物に行く
+   フィールド：check タイプ：boolean 　値：false
+   フィールド：timestamp タイプ：timestamp 　日付：2023 年 2 月 1 日　時刻：10:00
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 一覧表示を作成
 
-### `npm test`
+1. src/components/display.tsx を作成
+2. useState で初期値を設定
+3. useEffect で表示するデータを読み込む
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## データ追加を実装
 
-### `npm run build`
+1. src/components/form.tsx を作成
+2. useState で初期値を設定
+3. form で firebase にデータを送るコードを実装
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## データ削除を実装
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 取り消し線を実装
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 参考文献
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+docker で React 環境を構築
+https://zenn.dev/rihito/articles/96dfad8d4990f9
+Firebase
+https://firebase.google.com/?hl=ja
+Firebase document
+https://firebase.google.com/docs/web/setup?hl=ja
